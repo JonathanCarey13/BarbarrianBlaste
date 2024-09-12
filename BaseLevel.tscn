@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd34dfm3l1ax0"]
+[gd_scene load_steps=8 format=3 uid="uid://cd34dfm3l1ax0"]
 
 [ext_resource type="MeshLibrary" uid="uid://02vobfcfsqo1" path="res://MeshLibraries/SpaceLibrary.tres" id="1_gxana"]
+[ext_resource type="PackedScene" uid="uid://dq12v17sltko8" path="res://Enemy/enemy.tscn" id="2_m1mmh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhsl6"]
 albedo_color = Color(0.266667, 0.266667, 0.266667, 1)
@@ -91,3 +92,6 @@ path_local = false
 path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
+
+[node name="Enemy" parent="Path3D" instance=ExtResource("2_m1mmh")]
+transform = Transform3D(0.999953, 0, 0, 0, 1, 0, 0, 0, 0.999953, -14, 0, 14)
