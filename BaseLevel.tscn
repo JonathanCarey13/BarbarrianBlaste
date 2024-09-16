@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd34dfm3l1ax0"]
+[gd_scene load_steps=10 format=3 uid="uid://cd34dfm3l1ax0"]
 
+[ext_resource type="PackedScene" uid="uid://b5esgievoe5jb" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_fbyuq"]
 [ext_resource type="MeshLibrary" uid="uid://02vobfcfsqo1" path="res://MeshLibraries/SpaceLibrary.tres" id="1_gxana"]
 [ext_resource type="PackedScene" uid="uid://dq12v17sltko8" path="res://Enemy/enemy.tscn" id="2_m1mmh"]
 [ext_resource type="PackedScene" uid="uid://cibs6nf8ajxk7" path="res://Base/Base.tscn" id="3_hxjds"]
@@ -41,7 +42,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_cf0nr")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="RayPickerCamera" parent="." instance=ExtResource("1_fbyuq")]
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 14.5, 9.5)
 
 [node name="GridMap" type="GridMap" parent="."]
@@ -96,27 +97,27 @@ path_joined = false
 
 [node name="Enemy" parent="Path3D" instance=ExtResource("2_m1mmh")]
 transform = Transform3D(0.999946, 0, 0, 0, 1, 0, 0, 0, 0.999946, -14, 0, 14)
-speed = 60.0
+speed = 10.0
 
 [node name="Enemy2" parent="Path3D" instance=ExtResource("2_m1mmh")]
 transform = Transform3D(0.999191, 0, 0.0388537, 0, 1, 0, -0.0388537, 0, 0.999191, -14.2235, 0, 9.00509)
 progress = 5.0
-speed = 60.0
+speed = 10.0
 
 [node name="Enemy3" parent="Path3D" instance=ExtResource("2_m1mmh")]
 transform = Transform3D(0.999652, 0, 0.0242793, 0, 1, 0, -0.0242793, 0, 0.999652, -14.3842, 0, 4.00765)
 progress = 10.0
-speed = 60.0
+speed = 10.0
 
 [node name="Enemy4" parent="Path3D" instance=ExtResource("2_m1mmh")]
 transform = Transform3D(0.99993, 0, -0.0057053, 0, 1, 0, 0.0057053, 0, 0.99993, -14.4427, 0, -0.991881)
 progress = 15.0
-speed = 60.0
+speed = 10.0
 
 [node name="Enemy5" parent="Path3D" instance=ExtResource("2_m1mmh")]
 transform = Transform3D(0.796409, 0, -0.60467, 0, 1, 0, 0.60467, 0, 0.796409, -14.0343, 0, -5.95161)
 progress = 20.0
-speed = 60.0
+speed = 10.0
 
 [node name="Base" parent="." instance=ExtResource("3_hxjds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -6)
