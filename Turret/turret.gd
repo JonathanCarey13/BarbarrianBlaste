@@ -7,11 +7,13 @@ var enemy_path: Path3D
 var target: PathFollow3D
 
 @onready var turret_top: MeshInstance3D = $TurretBase/TurretTop
+@onready var fire_animation: AnimationPlayer = $AnimationPlayer
 
 func _on_timer_timeout() -> void:
 	if target:
 		var shot = projectile.instantiate()
 		add_child(shot)
+		fire_animation.play("fire")
 		shot.global_position = turret_top.global_position
 		shot.direction = global_transform.basis.z
 	
