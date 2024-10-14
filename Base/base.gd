@@ -1,8 +1,8 @@
 extends Node3D
 
 @export var max_health: int = 5
-var player_name: String = "Jonathan"
-var favorite_number: int = 13
+# var player_name: String = "Jonathan"
+# var favorite_number: int = 13
 
 
 var current_health: int:
@@ -18,9 +18,9 @@ var current_health: int:
 		
 @onready var label_3d: Label3D = $Label3D
 
-func _ready() -> void:
-	current_health = max_health
-	print("Hello " + player_name + " - "+ str(favorite_number))
+# func _ready() -> void:
+	# current_health = max_health
+	# print("Hello " + player_name + " - "+ str(favorite_number))
 
 func take_damage() -> void:
 	print("Damage dealt to base!")
