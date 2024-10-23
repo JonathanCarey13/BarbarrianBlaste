@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cd34dfm3l1ax0"]
+[gd_scene load_steps=16 format=3 uid="uid://cd34dfm3l1ax0"]
 
 [ext_resource type="PackedScene" uid="uid://b5esgievoe5jb" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_fbyuq"]
 [ext_resource type="MeshLibrary" uid="uid://02vobfcfsqo1" path="res://MeshLibraries/SpaceLibrary.tres" id="1_gxana"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://TurretManager.gd" id="5_lm68n"]
 [ext_resource type="PackedScene" uid="uid://dglu0q8havkaj" path="res://Turret/turret.tscn" id="6_284p3"]
 [ext_resource type="Script" path="res://Bank.gd" id="8_84n0n"]
+[ext_resource type="PackedScene" uid="uid://mpluhch2xj8a" path="res://Difficulty Manager/difficulty_manager.tscn" id="9_n3tor"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhsl6"]
 albedo_color = Color(0.266667, 0.266667, 0.266667, 1)
@@ -64,10 +65,11 @@ data = {
 "cells": PackedInt32Array(65535, 65534, 0, 65535, 2, 0, 65531, 65535, 0, 65531, 65534, 0, 65531, 0, 0, 65531, 1, 0, 65531, 2, 0, 65533, 2, 0, 65534, 2, 0, 0, 65534, 0, 0, 2, 0, 1, 65534, 0, 3, 65534, 0, 3, 2, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 65533, 1, 0, 65533, 0, 0, 65535, 65535, 0, 65535, 1, 0, 65534, 1, 0, 0, 65535, 0, 1, 65535, 0, 1, 0, 0, 2, 0, 0, 65533, 65535, 0, 2, 2, 0, 1, 2, 0)
 }
 
-[node name="EnemyPath" type="Path3D" parent="."]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("difficulty_manager")]
 curve = SubResource("Curve3D_hg3k2")
 script = ExtResource("3_quolf")
 enemy_scene = ExtResource("2_m1mmh")
+difficulty_manager = NodePath("../DifficultyManager")
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
@@ -114,6 +116,7 @@ autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_hxjds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -6)
+max_health = 50
 
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("5_lm68n")
@@ -140,4 +143,7 @@ size_flags_vertical = 8
 text = "lorem ipsum"
 label_settings = SubResource("LabelSettings_wluf2")
 
+[node name="DifficultyManager" parent="." instance=ExtResource("9_n3tor")]
+
 [connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemy"]
+[connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]

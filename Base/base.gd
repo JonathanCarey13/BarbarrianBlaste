@@ -8,7 +8,7 @@ extends Node3D
 var current_health: int:
 	set(health_in):
 		current_health = health_in
-		print("health was changed")
+		# print("health was changed")
 		label_3d.text = str(current_health) + "/" + str(max_health)
 		var red: Color = Color.RED
 		var white: Color = Color.WHITE
@@ -18,10 +18,10 @@ var current_health: int:
 		
 @onready var label_3d: Label3D = $Label3D
 
-# func _ready() -> void:
-	# current_health = max_health
+func _ready() -> void:
+	current_health = max_health
 	# print("Hello " + player_name + " - "+ str(favorite_number))
 
 func take_damage() -> void:
-	print("Damage dealt to base!")
+	# print("Damage dealt to base!")
 	current_health -= 1

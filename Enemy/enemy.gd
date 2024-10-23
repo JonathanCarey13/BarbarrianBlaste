@@ -26,5 +26,4 @@ func _process(delta: float) -> void:
 	if progress_ratio == 1:
 		base.take_damage()
 		set_process(false)
-	if current_health < 1:
 		queue_free()
