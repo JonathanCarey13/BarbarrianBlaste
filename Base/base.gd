@@ -20,7 +20,6 @@ var current_health: int:
 
 func _ready() -> void:
 	current_health = max_health
-	# print("Hello " + player_name + " - "+ str(favorite_number))
 
 func take_damage() -> void:
 	# print("Damage dealt to base!")

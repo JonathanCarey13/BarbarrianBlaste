@@ -1,46 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://dglu0q8havkaj"]
+[gd_scene load_steps=8 format=3 uid="uid://dglu0q8havkaj"]
 
 [ext_resource type="PackedScene" uid="uid://dqso1eefuhm66" path="res://Turret/projectile.tscn" id="1_82dr3"]
 [ext_resource type="Script" path="res://Turret/turret.gd" id="1_prpej"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_fyaqo"]
-height = 1.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_quqa6"]
-top_radius = 0.6
-bottom_radius = 0.6
-height = 0.6
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_r16y6"]
-top_radius = 0.1
-bottom_radius = 0.1
-height = 1.0
+[ext_resource type="PackedScene" uid="uid://cm1q8uqxwwtii" path="res://Assets/Cannon.glb" id="3_t8kcb"]
+[ext_resource type="PackedScene" uid="uid://nafnv8mx7yey" path="res://Assets/TurretBase.glb" id="4_r6230"]
 
 [sub_resource type="Animation" id="Animation_gdsle"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TurretBase/Barrel:position")
+tracks/0/path = NodePath("TurretBase/TurretTop/Cannon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.2, 0.3, 0.85)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TurretBase/Barrel2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.2, 0.3, 0.85)]
+"values": [Vector3(0, 1.3, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pe1kv"]
@@ -49,26 +26,14 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TurretBase/Barrel:position")
+tracks/0/path = NodePath("TurretBase/TurretTop/Cannon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.2, 0.3, 0.85), Vector3(-0.2, 0.3, 0.2), Vector3(-0.2, 0.3, 0.85)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TurretBase/Barrel2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.2, 0.3, 0.85), Vector3(0.2, 0.3, 0.2), Vector3(0.2, 0.3, 0.85)]
+"values": [Vector3(0, 1.3, -0.6), Vector3(0, 1.3, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ogecq"]
@@ -81,21 +46,14 @@ _data = {
 script = ExtResource("1_prpej")
 projectile = ExtResource("1_82dr3")
 
-[node name="TurretBase" type="MeshInstance3D" parent="."]
+[node name="TurretBase" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-mesh = SubResource("CylinderMesh_fyaqo")
 
-[node name="TurretTop" type="MeshInstance3D" parent="TurretBase"]
+[node name="TurretTop" type="Node3D" parent="TurretBase"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("CylinderMesh_quqa6")
 
-[node name="Barrel" type="MeshInstance3D" parent="TurretBase"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.2, 0.3, 0.85)
-mesh = SubResource("CylinderMesh_r16y6")
-
-[node name="Barrel2" type="MeshInstance3D" parent="TurretBase"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.2, 0.3, 0.85)
-mesh = SubResource("CylinderMesh_r16y6")
+[node name="Cannon" parent="TurretBase/TurretTop" instance=ExtResource("3_t8kcb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
@@ -104,5 +62,7 @@ autostart = true
 libraries = {
 "": SubResource("AnimationLibrary_ogecq")
 }
+
+[node name="TurretBase2" parent="." instance=ExtResource("4_r6230")]
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
