@@ -1,9 +1,6 @@
 extends Node3D
 
 @export var max_health: int = 5
-# var player_name: String = "Jonathan"
-# var favorite_number: int = 13
-
 
 var current_health: int:
 	set(health_in):
@@ -22,5 +19,4 @@ func _ready() -> void:
 	current_health = max_health
 
 func take_damage() -> void:
-	# print("Damage dealt to base!")
 	current_health -= 1

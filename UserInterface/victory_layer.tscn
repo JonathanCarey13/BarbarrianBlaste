@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7gug08k06t2s"]
+[gd_scene load_steps=6 format=3 uid="uid://c7gug08k06t2s"]
 
 [ext_resource type="Script" path="res://UserInterface/victory_layer.gd" id="1_uarar"]
+[ext_resource type="FontFile" uid="uid://bpyew3of6ybsu" path="res://Assets/Fonts/MedievalSharp-Regular.ttf" id="2_k25wy"]
 [ext_resource type="Texture2D" uid="uid://4g1bn2kr6wlu" path="res://Assets/star.png" id="2_x5smv"]
+
+[sub_resource type="Theme" id="Theme_hc2xn"]
+default_font = ExtResource("2_k25wy")
 
 [sub_resource type="LabelSettings" id="LabelSettings_3oegb"]
 font_size = 96
@@ -23,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_hc2xn")
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 custom_minimum_size = Vector2(400, 400)
@@ -71,24 +76,28 @@ stretch_mode = 5
 
 [node name="SurvivedLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+size_flags_vertical = 6
 text = "Survived +1 Star"
+horizontal_alignment = 1
 
 [node name="HealthLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
+size_flags_vertical = 6
 text = "Took No Damage +1 Star"
+horizontal_alignment = 1
 
 [node name="MoneyLabel" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-text = "Over 500 Gold +1 Star"
+size_flags_vertical = 6
+text = "Have Over 500 Gold +1 Star"
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 10
 
 [node name="RetryButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
